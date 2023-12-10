@@ -1,0 +1,8 @@
+name: ZConfigReplacer
+version: '${version}'
+main: io.github.yuazer.zconfigreplacer.Main
+commands:
+  zconfigreplacer:
+    aliases:
+      - zcr
+    description: "ZConfigReplacer main command"
