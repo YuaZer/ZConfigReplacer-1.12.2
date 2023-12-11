@@ -35,18 +35,6 @@ public class ConfigRunnable extends BukkitRunnable {
         }
         String status = conf.getString("status");
         if (status.equalsIgnoreCase("false")) {
-            Main.getConfMap().forEach((s, c) -> {
-                String fileName = s.getName().replace(".yml", "");
-                if (!fileName.equalsIgnoreCase(name)
-                        && !c.getString("time").equalsIgnoreCase(TimeUtils.getTodayWeekday())) {
-                    try {
-                        c.set("status", "false");
-                        c.save(s);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
             //TODO 配置文件替换
             try {
                 FileUtils.updateLocalYmlFiles(urlList, replaceList);
@@ -60,6 +48,18 @@ public class ConfigRunnable extends BukkitRunnable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            Main.getConfMap().forEach((s, c) -> {
+                String fileName = s.getName().replace(".yml", "");
+                if (!fileName.equalsIgnoreCase(name)
+                        && !c.getString("time").equalsIgnoreCase(TimeUtils.getTodayWeekday())) {
+                    try {
+                        c.set("status", "false");
+                        c.save(s);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
         }
     }
 }

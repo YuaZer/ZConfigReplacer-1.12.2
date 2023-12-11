@@ -19,7 +19,7 @@ public class ConfigUtils {
         for (File confFile : file.listFiles()) {
             String fileName = confFile.getName().replace(".yml", "");
             YamlConfiguration conf = YamlConfiguration.loadConfiguration(confFile);
-            Main.getConfMap().put(file, conf);
+            Main.getConfMap().put(confFile, conf);
             Main.getRunnableManager().put(fileName, new ConfigRunnable(fileName, conf));
             Main.getRunnableManager().startRunnable(fileName, 0L, YamlUtils.getConfigInt("checkTime"));
         }
