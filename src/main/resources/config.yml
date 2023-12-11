@@ -1,4 +1,4 @@
 Message:
   reload: "&a重载成功"
-#多少秒进行一次星期判断
-checkTime: 3600
+#多少秒进行一次时间判断
+checkTime: 30
