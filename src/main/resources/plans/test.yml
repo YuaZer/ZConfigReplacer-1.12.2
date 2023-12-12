@@ -3,11 +3,11 @@ time:
   hours: 00:05
 status: 'true'
 UrlList:
-  - http://zaxshop.top:5000/MyConfig/test1.yml
-  - http://zaxshop.top:5000/MyConfig/test2.yml
-  - http://zaxshop.top:5000/MyConfig/test3.yml
+- http://zaxshop.top:5000/MyConfig/test1.yml
+- http://zaxshop.top:5000/MyConfig/test2.yml
+- http://zaxshop.top:5000/MyConfig/test3.yml
 ReplaceList:
-  - D:\Minecraft\服务端\精灵之旅-1.12.2\plugins\ZConfigReplacer\test.yml
+- D:\Minecraft\服务端\精灵之旅-1.12.2\plugins\ZConfigReplacer\test.yml
 commands:
-  - "ptp reload"
-  - "broadcast 任务已经轮换!"
+- "ptp reload"
+- "broadcast 任务已经轮换!"
