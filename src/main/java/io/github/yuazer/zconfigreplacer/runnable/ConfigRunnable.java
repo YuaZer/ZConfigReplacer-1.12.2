@@ -3,6 +3,7 @@ package io.github.yuazer.zconfigreplacer.runnable;
 import io.github.yuazer.zconfigreplacer.Main;
 import io.github.yuazer.zconfigreplacer.utils.FileUtils;
 import io.github.yuazer.zconfigreplacer.utils.TimeUtils;
+import io.github.yuazer.zconfigreplacer.utils.YamlUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -30,7 +31,7 @@ public class ConfigRunnable extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (!TimeUtils.getTodayWeekday().equalsIgnoreCase(week)||!TimeUtils.getCurrentTimeFormatted().equalsIgnoreCase(hours)) {
+        if (!TimeUtils.getTodayWeekday().equalsIgnoreCase(week) || !TimeUtils.getCurrentTimeFormatted().equalsIgnoreCase(hours)) {
             return;
         }
         String status = conf.getString("status");
@@ -39,7 +40,9 @@ public class ConfigRunnable extends BukkitRunnable {
             try {
                 FileUtils.updateLocalYmlFiles(urlList, replaceList);
                 conf.set("status", "true");
-                conf.save(new File("plugins/ZConfigReplacer/plans/" + name + ".yml"));
+                File file = new File("plugins/ZConfigReplacer/plans/" + name + ".yml");
+                conf.save(file);
+                //YamlUtils.saveWithComments(conf, file);
                 Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
                     conf.getStringList("commands").forEach(c -> {
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), c);
@@ -55,6 +58,7 @@ public class ConfigRunnable extends BukkitRunnable {
                     try {
                         c.set("status", "false");
                         c.save(s);
+                        //YamlUtils.saveWithComments(c, s);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

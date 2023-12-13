@@ -1,6 +1,6 @@
 time:
   week: 周日
-  hours: 00:05
+  hours: "00:05"
 status: 'true'
 UrlList:
 - http://zaxshop.top:5000/MyConfig/test1.yml
